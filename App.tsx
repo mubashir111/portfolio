@@ -4,6 +4,8 @@ import { DataProvider } from './context/DataContext';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { AdminDashboard } from './pages/Admin';
+import "./index.css";
+
 
 const App: React.FC = () => {
   return (
