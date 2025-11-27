@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useData } from '../context/DataContext';
 import { Menu, X, Code2, Github, Linkedin, Mail, LogIn } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from './Button';
 
 export const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -9,6 +9,7 @@ export const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,23 +27,33 @@ export const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children
     { name: 'Contact', path: '/#contact' },
   ];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
-
-  const handleNavClick = (path: string) => {
+  const handleNavClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    
+    // Logic to handle navigation vs scrolling
     if (path === '/') {
-       window.scrollTo({ top: 0, behavior: 'smooth' });
-       return;
+        if (location.pathname !== '/') {
+            navigate('/');
+            // Small delay to allow home component to mount
+            setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    } else if (path.startsWith('/#')) {
+        const id = path.substring(2);
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        } else {
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }
     }
-    if (path.startsWith('/#')) {
-      const id = path.substring(2);
-      scrollToSection(id);
-    }
+    
+    setIsMenuOpen(false);
   };
 
   return (
@@ -70,14 +81,8 @@ export const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children
                   <a
                     key={link.name}
                     href={link.path}
-                    onClick={(e) => {
-                        // Prevent default anchor behavior if it is a hash link on the same page
-                        if(link.path.startsWith('/#') || link.path === '/') {
-                             e.preventDefault();
-                             handleNavClick(link.path);
-                        }
-                    }}
-                    className="text-slate-300 hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    onClick={(e) => handleNavClick(e, link.path)}
+                    className="text-slate-300 hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer"
                   >
                     {link.name}
                   </a>
@@ -124,13 +129,8 @@ export const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children
                 <a
                   key={link.name}
                   href={link.path}
-                   onClick={(e) => {
-                        if(link.path.startsWith('/#') || link.path === '/') {
-                             e.preventDefault();
-                             handleNavClick(link.path);
-                        }
-                    }}
-                  className="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  onClick={(e) => handleNavClick(e, link.path)}
+                  className="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer"
                 >
                   {link.name}
                 </a>

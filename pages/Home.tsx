@@ -184,9 +184,6 @@ export const Home: React.FC = () => {
               <h2 className="text-brand-400 font-medium tracking-wide uppercase text-sm mb-2">Portfolio</h2>
               <h3 className="text-3xl md:text-4xl font-display font-bold text-white">Featured Projects</h3>
             </div>
-            <Link to="/portfolio" className="hidden md:flex items-center text-white hover:text-brand-400 transition-colors mt-4 md:mt-0">
-               View All Projects <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -220,10 +217,6 @@ export const Home: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-          
-          <div className="mt-8 text-center md:hidden">
-             <Button variant="outline">View All Projects</Button>
           </div>
         </div>
       </section>

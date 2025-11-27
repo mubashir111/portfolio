@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { DataProvider } from './context/DataContext';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
@@ -15,6 +15,8 @@ const App: React.FC = () => {
           {/* Admin Routes - In a larger app, we'd use nested routes here properly */}
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/*" element={<AdminDashboard />} />
+          {/* Catch all for 404s */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </DataProvider>
