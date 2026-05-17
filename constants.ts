@@ -15,7 +15,7 @@ export const INITIAL_DATA: AppData = {
   },
   skills: [
     "Laravel", "PHP", "React.js", "JavaScript", "TypeScript", "Flutter", 
-    "MySQL", "HTML/CSS", "Bootstrap", "Tailwind CSS", "Git", "REST APIs"
+    "MySQL", "HTML/CSS", "Bootstrap", "Tailwind CSS", "Git", "REST APIs", "ERPNext"
   ],
   services: [
     {
@@ -44,6 +44,16 @@ export const INITIAL_DATA: AppData = {
     }
   ],
   experience: [
+    {
+      id: "e0",
+      company: "Team Backoffice",
+      role: "Web Developer",
+      period: "Current",
+      description: [
+        "Currently working at http://teambackoffice.com/ creating comprehensive web applications, ERP systems, and dynamic websites.",
+        "Developing robust features and scalable backend architecture using Laravel."
+      ]
+    },
     {
       id: "e1",
       company: "Al Rawabi Projects",
@@ -89,19 +99,19 @@ export const INITIAL_DATA: AppData = {
     },
     {
       id: "p2",
-      title: "Target Learning App",
-      description: "E-learning platform with subscription plans, lesson chapters, and Vimeo integration.",
-      link: "https://elearn.targetlearningapp.com/login.php",
-      tags: ["LMS", "Video Integration", "Subscription"],
-      image: "https://picsum.photos/seed/target/800/600"
+      title: "Meorah",
+      description: "Premium e-commerce platform featuring a modern shopping experience, elegant product catalog, and secure checkout.",
+      link: "https://meorah.in/",
+      tags: ["E-Commerce", "Web Development", "Payment Integration"],
+      image: "https://picsum.photos/seed/meorah/800/600"
     },
     {
       id: "p3",
-      title: "Lifescool Website",
-      description: "Interactive platform connecting users to innovative educational resources with a modern design.",
-      link: "https://www.lifescool.app/",
-      tags: ["Education", "Interactive", "React"],
-      image: "https://picsum.photos/seed/lifescool/800/600"
+      title: "Behom",
+      description: "Sleek and modern e-commerce platform for home decor and furniture, featuring advanced product discovery and seamless checkout.",
+      link: "https://behom.ae/",
+      tags: ["E-Commerce", "UI/UX", "Web Development"],
+      image: "https://picsum.photos/seed/behom/800/600"
     },
     {
       id: "p4",
@@ -115,7 +125,7 @@ export const INITIAL_DATA: AppData = {
   testimonials: [
     {
       id: "t1",
-      name: "John Doe",
+      name: "bava haji",
       role: "Project Manager",
       company: "Al Rawabi Projects",
       text: "Mubashir is an exceptional developer who always delivers high-quality code on time.",
@@ -123,7 +133,7 @@ export const INITIAL_DATA: AppData = {
     },
     {
       id: "t2",
-      name: "Sarah Smith",
+      name: "dr vinodkumar",
       role: "CEO",
       company: "Greenworld Int.",
       text: "His ability to handle both backend logic and frontend aesthetics is impressive.",

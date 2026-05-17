@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { PublicLayout } from '../components/Layout';
 import { Button } from '../components/Button';
-import { ArrowRight, Download, Globe, Smartphone, Database, ShoppingCart, Send, Code, ExternalLink, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
+import { ArrowRight, Download, Globe, Smartphone, Database, ShoppingCart, Send, Code, ExternalLink, Calendar } from 'lucide-react';
+import heroImage from '../assets/images/mubashir2.webp';
+import cvFile from '../assets/images/MUBASHIRT.pdf';
 
 export const Home: React.FC = () => {
   const { data } = useData();
   
-  // Form State
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Globe': return <Globe className="h-8 w-8 text-brand-400" />;
@@ -24,45 +17,6 @@ export const Home: React.FC = () => {
       case 'Database': return <Database className="h-8 w-8 text-brand-400" />;
       case 'ShoppingCart': return <ShoppingCart className="h-8 w-8 text-brand-400" />;
       default: return <Code className="h-8 w-8 text-brand-400" />;
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('submitting');
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/muba4shir@gmail.com", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          ...formState,
-          _subject: `New Portfolio Message: ${formState.subject || 'No Subject'}`,
-          _template: 'table'
-        })
-      });
-
-      if (response.ok) {
-        setStatus('success');
-        setFormState({ name: '', email: '', subject: '', message: '' });
-        // Reset success message after 5 seconds
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        setStatus('error');
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus('error');
     }
   };
 
@@ -93,9 +47,11 @@ export const Home: React.FC = () => {
                 <Button size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth'})}>
                   Start a Project <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline">
-                  Download CV <Download className="ml-2 h-5 w-5" />
-                </Button>
+                <a href={cvFile} download="MUBASHIRT.pdf">
+                  <Button size="lg" variant="outline">
+                    Download CV <Download className="ml-2 h-5 w-5" />
+                  </Button>
+                </a>
               </div>
 
               <div className="pt-8 border-t border-slate-800">
@@ -112,9 +68,9 @@ export const Home: React.FC = () => {
 
             <div className="relative hidden lg:block">
               <div className="aspect-square rounded-2xl overflow-hidden border-2 border-slate-800 relative z-10">
-                 {/* Placeholder for Profile Image - using a generic dev image */}
+                 {/* Profile Image */}
                 <img 
-                  src="https://picsum.photos/seed/mubashirdev/800/800" 
+                  src={heroImage} 
                   alt="Mubashir T" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -302,17 +258,16 @@ export const Home: React.FC = () => {
           </p>
           
           <div className="bg-slate-900 p-8 md:p-12 rounded-2xl border border-slate-800 shadow-2xl text-left">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
+              <input type="hidden" name="access_key" value="72f1fc99-6f53-40f8-ac3c-b1665887aaf8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-400 mb-2">Name</label>
                   <input 
                     type="text"
                     name="name" 
-                    value={formState.name}
-                    onChange={handleInputChange}
                     className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all" 
-                    placeholder="John Doe"
+                    placeholder="Your Name"
                     required
                   />
                 </div>
@@ -321,10 +276,8 @@ export const Home: React.FC = () => {
                   <input 
                     type="email"
                     name="email"
-                    value={formState.email}
-                    onChange={handleInputChange}
                     className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all" 
-                    placeholder="john@example.com"
+                    placeholder="your@email.com"
                     required
                   />
                 </div>
@@ -334,8 +287,6 @@ export const Home: React.FC = () => {
                 <input 
                   type="text"
                   name="subject"
-                  value={formState.subject}
-                  onChange={handleInputChange}
                   className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all" 
                   placeholder="Project Inquiry"
                   required
@@ -346,31 +297,15 @@ export const Home: React.FC = () => {
                 <textarea 
                   rows={4}
                   name="message"
-                  value={formState.message}
-                  onChange={handleInputChange}
                   className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all" 
                   placeholder="Tell me about your project..."
                   required
                 ></textarea>
               </div>
-              
-              {status === 'success' && (
-                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 flex items-center text-green-400">
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  Message sent successfully! I'll get back to you soon.
-                </div>
-              )}
-              
-              {status === 'error' && (
-                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 flex items-center text-red-400">
-                  <AlertCircle className="w-5 h-5 mr-2" />
-                  Something went wrong. Please try again later.
-                </div>
-              )}
 
-              <Button size="lg" className="w-full" disabled={status === 'submitting'}>
-                {status === 'submitting' ? 'Sending...' : 'Send Message'} 
-                {!status && <Send className="ml-2 w-4 h-4" />}
+              <Button type="submit" size="lg" className="w-full">
+                Submit Form
+                <Send className="ml-2 w-4 h-4" />
               </Button>
             </form>
             
