@@ -7,7 +7,7 @@ export const INITIAL_DATA: AppData = {
     email: "muba4shir@gmail.com",
     phone: "+91 9061417949",
     address: "Kuttippuram, Malappuram, Kerala 679582",
-    summary: "Result-driven Full-stack developer with a strong background in building web applications, administrative dashboards, CRM systems, and e-learning platforms. Proficient in modern web technologies and frameworks, with expertise in scalable architecture, product development, and robust error handling.",
+    summary: "Result-driven Full-stack developer with a strong background in building web applications, administrative dashboards, CRM systems, ERPNext solutions, and e-learning platforms. Proficient in modern web technologies and frameworks, with expertise in scalable architecture, product development, and robust error handling.",
     socials: {
       github: "https://github.com/",
       linkedin: "https://linkedin.com/"
@@ -15,7 +15,7 @@ export const INITIAL_DATA: AppData = {
   },
   skills: [
     "Laravel", "PHP", "React.js", "JavaScript", "TypeScript", "Flutter", 
-    "MySQL", "HTML/CSS", "Bootstrap", "Tailwind CSS", "Git", "REST APIs", "ERPNext"
+    "ERPNext", "MySQL", "HTML/CSS", "Bootstrap", "Tailwind CSS", "Git", "REST APIs"
   ],
   services: [
     {
@@ -33,7 +33,7 @@ export const INITIAL_DATA: AppData = {
     {
       id: "s3",
       title: "CRM & ERP Systems",
-      description: "Custom administrative dashboards, CRM systems, and HRM solutions tailored to business needs.",
+      description: "Custom administrative dashboards, CRM systems, ERPNext implementations, and HRM solutions tailored to business needs.",
       icon: "Database"
     },
     {
@@ -50,7 +50,7 @@ export const INITIAL_DATA: AppData = {
       role: "Web Developer",
       period: "Current",
       description: [
-        "Currently working at http://teambackoffice.com/ creating comprehensive web applications, ERP systems, and dynamic websites.",
+        "Currently working at http://teambackoffice.com/ creating comprehensive web applications, ERPNext solutions, and dynamic websites.",
         "Developing robust features and scalable backend architecture using Laravel."
       ]
     },

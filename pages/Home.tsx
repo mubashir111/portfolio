@@ -57,7 +57,7 @@ export const Home: React.FC = () => {
               <div className="pt-8 border-t border-slate-800">
                 <p className="text-slate-500 text-sm mb-4">Tech Stack</p>
                 <div className="flex flex-wrap gap-3">
-                  {data.skills.slice(0, 6).map(skill => (
+                  {data.skills.slice(0, 7).map(skill => (
                     <span key={skill} className="text-slate-300 bg-slate-800 px-3 py-1 rounded-md text-sm border border-slate-700">
                       {skill}
                     </span>
